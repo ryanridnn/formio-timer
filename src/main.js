@@ -1,10 +1,9 @@
 import { Formio } from "formiojs";
 import "./style.css";
 
-// import schema from "./schema";
-
 let timerOn = false;
 
+const timerEl = document.getElementById("timer");
 const hourEl = document.getElementById("hour");
 const minuteEl = document.getElementById("minute");
 const secondEl = document.getElementById("second");
@@ -47,6 +46,7 @@ const secondEl = document.getElementById("second");
       if (!timerOn) {
         if (data.processSteps.Cook) {
           if (data.cook === "Sous Vide") {
+            timerEl.classList.remove("d-none");
             const productTemperature =
               data.productTemperatureGrid.length === 0
                 ? false
@@ -56,11 +56,14 @@ const secondEl = document.getElementById("second");
             const time = data.timeRequired;
 
             if (
-              (isCookDataChange(data.cook, time) &&
-                !!data.cookTemperature &&
-                productTemperature &&
+              isCookDataChange(
+                data.cook,
                 time,
-              data.productTemperatureGrid.map((o) => o.productTemperature))
+                data.productTemperatureGrid.map((o) => o.productTemperature)
+              ) &&
+              !!data.cookTemperature &&
+              productTemperature &&
+              time
             ) {
               setCookStatuses("Progress");
               startTimer(time * 60, () => {
@@ -68,6 +71,7 @@ const secondEl = document.getElementById("second");
               });
             }
           } else if (data.cook === "6D Process (Listeria)") {
+            timerEl.classList.remove("d-none");
             const productTemperature =
               data.productTemperatureGrid.length === 0
                 ? false
@@ -78,11 +82,14 @@ const secondEl = document.getElementById("second");
             const time = data.cookTimeFor6DProcess;
 
             if (
-              (isCookDataChange(data.cook, time) &&
-                !!data.internalProductTemperature &&
-                productTemperature &&
+              isCookDataChange(
+                data.cook,
                 time,
-              data.productTemperatureGrid.map((o) => o.productTemperature))
+                data.productTemperatureGrid.map((o) => o.productTemperature)
+              ) &&
+              !!data.internalProductTemperature &&
+              productTemperature &&
+              time
             ) {
               setCookStatuses("Progress");
               startTimer(time * 60, () => {
@@ -90,6 +97,7 @@ const secondEl = document.getElementById("second");
               });
             }
           } else if (data.cook === "6D Process (Clostridium)") {
+            timerEl.classList.remove("d-none");
             const productTemperature =
               data.productTemperatureGrid.length === 0
                 ? false
@@ -100,11 +108,14 @@ const secondEl = document.getElementById("second");
             const time = data.cookTimeFor6DProcess1;
 
             if (
-              (isCookDataChange(data.cook, time) &&
-                !!data.internalProductTemperature1 &&
-                productTemperature &&
+              isCookDataChange(
+                data.cook,
                 time,
-              data.productTemperatureGrid.map((o) => o.productTemperature))
+                data.productTemperatureGrid.map((o) => o.productTemperature)
+              ) &&
+              !!data.internalProductTemperature1 &&
+              productTemperature &&
+              time
             ) {
               setCookStatuses("Progress");
               startTimer(time * 60, () => {
@@ -114,6 +125,7 @@ const secondEl = document.getElementById("second");
           }
         } else if (data.processSteps.Chill) {
           if (data.chillSteps1 === "onePhaseChill") {
+            timerEl.classList.remove("d-none");
             const productTemperature =
               data.productTemperatureGrid.length === 0
                 ? false
@@ -150,6 +162,7 @@ const secondEl = document.getElementById("second");
               });
             }
           } else if (data.chillSteps1 === "twoPhaseChill") {
+            timerEl.classList.remove("d-none");
             const productTemperature =
               data.productTemperatureGrid.length === 0
                 ? false
@@ -186,6 +199,8 @@ const secondEl = document.getElementById("second");
               });
             }
           }
+        } else {
+          timerEl.classList.add("d-none");
         }
       }
     });
@@ -250,6 +265,8 @@ const isCookDataChange = (cook, time, productTemperatures) => {
     cookStore.productTemperatures.every((o, i) => productTemperatures[i] === o)
   ) {
     return false;
+  } else if (productTemperatures.length === 0) {
+    return false;
   } else {
     cookStore.cook = cook;
     cookStore.time = time;
@@ -281,6 +298,8 @@ const isChillDataChange = (
     chillStore.productTemperatures.length === productTemperatures.length &&
     chillStore.productTemperatures.every((o, i) => productTemperatures[i] === o)
   ) {
+    return false;
+  } else if (productTemperatures.length === 0) {
     return false;
   } else {
     chillStore.phase = phase;
