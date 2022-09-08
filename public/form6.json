@@ -1,0 +1,2438 @@
+{
+  "_id": "63156af147c4db5a1cd7dd01",
+  "type": "form",
+  "tags": [],
+  "owner": "5b55e8b41c8da0347428831a",
+  "revisions": "",
+  "_vid": 0,
+  "title": "Cook Chill`",
+  "display": "form",
+  "access": [
+    {
+      "roles": [
+        "62feb310db1fad7558564a25",
+        "62feb310db1fad5ccd564a2a",
+        "62feb310db1fad58bd564a2f"
+      ],
+      "type": "read_all"
+    }
+  ],
+  "submissionAccess": [],
+  "controller": "",
+  "properties": {},
+  "settings": {},
+  "name": "cookChill",
+  "path": "cookchill",
+  "project": "62feb310db1fad642d564a1e",
+  "created": "2022-09-05T03:20:17.635Z",
+  "modified": "2022-09-06T01:09:54.543Z",
+  "machineName": "wphzyxbaupcldut:cookChill",
+  "components": [
+    {
+      "html": "<p><strong>Settings</strong></p>",
+      "label": "Content",
+      "refreshOnChange": false,
+      "key": "content",
+      "type": "content",
+      "input": false,
+      "tableView": false
+    },
+    {
+      "label": "Tabs",
+      "components": [
+        {
+          "label": "Product Information",
+          "key": "productInformation",
+          "components": [
+            {
+              "label": "Columns",
+              "columns": [
+                {
+                  "components": [
+                    {
+                      "label": "Product Input",
+                      "optionsLabelPosition": "right",
+                      "inline": false,
+                      "tableView": false,
+                      "values": [
+                        {
+                          "label": "Free Text",
+                          "value": "freeText",
+                          "shortcut": ""
+                        },
+                        {
+                          "label": "Product Database",
+                          "value": "productDatabase",
+                          "shortcut": ""
+                        }
+                      ],
+                      "key": "productInput",
+                      "type": "radio",
+                      "input": true,
+                      "defaultValue": "freeText"
+                    },
+                    {
+                      "label": "Select Product Database",
+                      "widget": "choicesjs",
+                      "tableView": true,
+                      "key": "selectProductDatabase",
+                      "type": "select",
+                      "input": true
+                    }
+                  ],
+                  "width": 6,
+                  "offset": 0,
+                  "push": 0,
+                  "pull": 0,
+                  "size": "md",
+                  "currentWidth": 6
+                },
+                {
+                  "components": [
+                    {
+                      "label": "Product Options",
+                      "optionsLabelPosition": "right",
+                      "tableView": false,
+                      "values": [
+                        {
+                          "label": "Assign Unique ID",
+                          "value": "assignUniqueId",
+                          "shortcut": ""
+                        }
+                      ],
+                      "key": "productOptions",
+                      "type": "selectboxes",
+                      "input": true,
+                      "inputType": "checkbox"
+                    }
+                  ],
+                  "width": 6,
+                  "offset": 0,
+                  "push": 0,
+                  "pull": 0,
+                  "size": "md",
+                  "currentWidth": 6
+                }
+              ],
+              "key": "columns5",
+              "type": "columns",
+              "input": false,
+              "tableView": false
+            }
+          ]
+        },
+        {
+          "label": "Cook Steps",
+          "key": "tab1",
+          "components": [
+            {
+              "label": "Enable",
+              "tableView": false,
+              "defaultValue": false,
+              "key": "cookEnable",
+              "type": "checkbox",
+              "input": true
+            },
+            {
+              "label": "Columns",
+              "columns": [
+                {
+                  "components": [
+                    {
+                      "title": "Cook Methods",
+                      "collapsible": false,
+                      "key": "cookMethods",
+                      "type": "panel",
+                      "label": "Panel",
+                      "input": false,
+                      "tableView": false,
+                      "components": [
+                        {
+                          "label": "Enable",
+                          "tableView": false,
+                          "key": "enable3",
+                          "type": "checkbox",
+                          "input": true,
+                          "defaultValue": false
+                        },
+                        {
+                          "label": "Cook Methods",
+                          "editor": "ace",
+                          "autoExpand": false,
+                          "tableView": true,
+                          "key": "cookMethods1",
+                          "type": "textarea",
+                          "input": true
+                        },
+                        {
+                          "label": "cookMethods1Array",
+                          "calculateValue": "value = data.cookMethods1.trim().split('\\n')",
+                          "key": "cookMethods1Array",
+                          "type": "hidden",
+                          "input": true,
+                          "tableView": false
+                        }
+                      ]
+                    }
+                  ],
+                  "width": 3,
+                  "offset": 0,
+                  "push": 0,
+                  "pull": 0,
+                  "size": "md",
+                  "currentWidth": 3
+                },
+                {
+                  "components": [
+                    {
+                      "title": "Full Cook",
+                      "collapsible": false,
+                      "key": "fullCook",
+                      "type": "panel",
+                      "label": "Panel",
+                      "input": false,
+                      "tableView": false,
+                      "components": [
+                        {
+                          "label": "Enable",
+                          "tableView": false,
+                          "key": "enable",
+                          "type": "checkbox",
+                          "input": true,
+                          "defaultValue": false
+                        },
+                        {
+                          "label": "Critical Limit",
+                          "mask": false,
+                          "tableView": false,
+                          "delimiter": false,
+                          "requireDecimal": false,
+                          "inputFormat": "plain",
+                          "truncateMultipleSpaces": false,
+                          "key": "criticalLimit",
+                          "type": "number",
+                          "input": true
+                        }
+                      ]
+                    },
+                    {
+                      "title": "6D Process (Listeria)",
+                      "collapsible": false,
+                      "key": "fullCook3",
+                      "type": "panel",
+                      "label": "Panel",
+                      "input": false,
+                      "tableView": false,
+                      "components": [
+                        {
+                          "label": "Enable",
+                          "tableView": false,
+                          "key": "enable6",
+                          "type": "checkbox",
+                          "input": true,
+                          "defaultValue": false
+                        }
+                      ]
+                    }
+                  ],
+                  "width": 3,
+                  "offset": 0,
+                  "push": 0,
+                  "pull": 0,
+                  "size": "md",
+                  "currentWidth": 3
+                },
+                {
+                  "components": [
+                    {
+                      "title": "Seal | Sear | Partial Cook",
+                      "collapsible": false,
+                      "key": "fullCook1",
+                      "type": "panel",
+                      "label": "Panel",
+                      "input": false,
+                      "tableView": false,
+                      "components": [
+                        {
+                          "label": "Enable",
+                          "tableView": false,
+                          "key": "enable1",
+                          "type": "checkbox",
+                          "input": true,
+                          "defaultValue": false
+                        },
+                        {
+                          "label": "Critical Limit",
+                          "mask": false,
+                          "tableView": false,
+                          "delimiter": false,
+                          "requireDecimal": false,
+                          "inputFormat": "plain",
+                          "truncateMultipleSpaces": false,
+                          "key": "criticalLimit1",
+                          "type": "number",
+                          "input": true
+                        }
+                      ]
+                    },
+                    {
+                      "title": "6D Process (Clostridium)",
+                      "collapsible": false,
+                      "key": "fullCook4",
+                      "type": "panel",
+                      "label": "Panel",
+                      "input": false,
+                      "tableView": false,
+                      "components": [
+                        {
+                          "label": "Enable",
+                          "tableView": false,
+                          "key": "enable7",
+                          "type": "checkbox",
+                          "input": true,
+                          "defaultValue": false
+                        }
+                      ]
+                    }
+                  ],
+                  "size": "md",
+                  "width": 3,
+                  "offset": 0,
+                  "push": 0,
+                  "pull": 0,
+                  "currentWidth": 3
+                },
+                {
+                  "components": [
+                    {
+                      "title": "Sous Vide",
+                      "collapsible": false,
+                      "key": "fullCook2",
+                      "type": "panel",
+                      "label": "Panel",
+                      "input": false,
+                      "tableView": false,
+                      "components": [
+                        {
+                          "label": "Enable",
+                          "tableView": false,
+                          "key": "enable2",
+                          "type": "checkbox",
+                          "input": true,
+                          "defaultValue": false
+                        }
+                      ]
+                    },
+                    {
+                      "title": "Corrective Actions",
+                      "collapsible": false,
+                      "key": "correctiveActions3",
+                      "type": "panel",
+                      "label": "Panel",
+                      "input": false,
+                      "tableView": false,
+                      "components": [
+                        {
+                          "label": "Corrective Actions",
+                          "editor": "ace",
+                          "tableView": true,
+                          "key": "correctiveActions4",
+                          "type": "textarea",
+                          "input": true
+                        }
+                      ]
+                    }
+                  ],
+                  "size": "md",
+                  "width": 3,
+                  "offset": 0,
+                  "push": 0,
+                  "pull": 0,
+                  "currentWidth": 3
+                }
+              ],
+              "key": "columns4",
+              "type": "columns",
+              "input": false,
+              "tableView": false
+            }
+          ]
+        },
+        {
+          "label": "Chill Steps",
+          "key": "chillSteps",
+          "components": [
+            {
+              "label": "Enable",
+              "tableView": false,
+              "defaultValue": false,
+              "key": "chillEnable",
+              "type": "checkbox",
+              "input": true
+            },
+            {
+              "label": "Columns",
+              "columns": [
+                {
+                  "components": [
+                    {
+                      "title": "Chill Methods",
+                      "collapsible": false,
+                      "key": "chillMethods",
+                      "type": "panel",
+                      "label": "Panel",
+                      "input": false,
+                      "tableView": false,
+                      "components": [
+                        {
+                          "label": "Enable",
+                          "tableView": false,
+                          "defaultValue": false,
+                          "key": "enable4",
+                          "type": "checkbox",
+                          "input": true
+                        },
+                        {
+                          "label": "Chill Methods",
+                          "editor": "ace",
+                          "autoExpand": false,
+                          "tableView": true,
+                          "key": "chillMethods1",
+                          "type": "textarea",
+                          "input": true
+                        }
+                      ]
+                    },
+                    {
+                      "label": "chillMethods1Array",
+                      "calculateValue": "value = data.chillMethods1.trim().split('\\n')",
+                      "key": "chillMethods1Array",
+                      "type": "hidden",
+                      "input": true,
+                      "tableView": false
+                    }
+                  ],
+                  "width": 3,
+                  "offset": 0,
+                  "push": 0,
+                  "pull": 0,
+                  "size": "md",
+                  "currentWidth": 3
+                },
+                {
+                  "components": [
+                    {
+                      "collapsible": false,
+                      "key": "panel",
+                      "type": "panel",
+                      "label": "Panel",
+                      "input": false,
+                      "tableView": false,
+                      "components": [
+                        {
+                          "label": "Chill Steps",
+                          "optionsLabelPosition": "right",
+                          "inline": false,
+                          "tableView": false,
+                          "values": [
+                            {
+                              "label": "One Phase Chill",
+                              "value": "onePhaseChill",
+                              "shortcut": ""
+                            },
+                            {
+                              "label": "Two Phase Chill",
+                              "value": "twoPhaseChill",
+                              "shortcut": ""
+                            }
+                          ],
+                          "key": "chillSteps1",
+                          "type": "radio",
+                          "input": true
+                        }
+                      ]
+                    }
+                  ],
+                  "width": 3,
+                  "offset": 0,
+                  "push": 0,
+                  "pull": 0,
+                  "size": "md",
+                  "currentWidth": 3
+                },
+                {
+                  "components": [
+                    {
+                      "title": "Phase 1 Chill",
+                      "collapsible": false,
+                      "key": "phase1Chill",
+                      "customConditional": "show = data.chillSteps1 === 'onePhaseChill'",
+                      "type": "panel",
+                      "label": "Panel",
+                      "input": false,
+                      "tableView": false,
+                      "components": [
+                        {
+                          "label": "Starting Temperature",
+                          "prefix": "≤",
+                          "mask": false,
+                          "tableView": false,
+                          "delimiter": false,
+                          "requireDecimal": false,
+                          "inputFormat": "plain",
+                          "truncateMultipleSpaces": false,
+                          "key": "upperLimit",
+                          "type": "number",
+                          "input": true
+                        },
+                        {
+                          "label": "Finishing Temperature ",
+                          "mask": false,
+                          "tableView": false,
+                          "delimiter": false,
+                          "requireDecimal": false,
+                          "inputFormat": "plain",
+                          "truncateMultipleSpaces": false,
+                          "key": "finishTemperature",
+                          "type": "number",
+                          "input": true
+                        },
+                        {
+                          "label": "Time Permitted",
+                          "mask": false,
+                          "tableView": false,
+                          "delimiter": false,
+                          "requireDecimal": false,
+                          "inputFormat": "plain",
+                          "truncateMultipleSpaces": false,
+                          "key": "timePermitted",
+                          "type": "number",
+                          "input": true
+                        },
+                        {
+                          "label": "Corrective Actions",
+                          "editor": "ace",
+                          "tableView": true,
+                          "key": "correctiveActions",
+                          "type": "textarea",
+                          "input": true
+                        }
+                      ]
+                    }
+                  ],
+                  "size": "md",
+                  "width": 3,
+                  "offset": 0,
+                  "push": 0,
+                  "pull": 0,
+                  "currentWidth": 3
+                },
+                {
+                  "components": [
+                    {
+                      "title": "Phase 2 Chill",
+                      "collapsible": false,
+                      "key": "phase1Chill1",
+                      "customConditional": "show = data.chillSteps1 === 'twoPhaseChill'",
+                      "type": "panel",
+                      "label": "Panel",
+                      "input": false,
+                      "tableView": false,
+                      "components": [
+                        {
+                          "label": "Starting Temperature",
+                          "mask": false,
+                          "tableView": false,
+                          "delimiter": false,
+                          "requireDecimal": false,
+                          "inputFormat": "plain",
+                          "truncateMultipleSpaces": false,
+                          "key": "upperLimit1",
+                          "type": "number",
+                          "input": true
+                        },
+                        {
+                          "label": "Finishing Temperature ",
+                          "mask": false,
+                          "tableView": false,
+                          "delimiter": false,
+                          "requireDecimal": false,
+                          "inputFormat": "plain",
+                          "truncateMultipleSpaces": false,
+                          "key": "finishTemperature1",
+                          "type": "number",
+                          "input": true
+                        },
+                        {
+                          "label": "Time Permitted",
+                          "mask": false,
+                          "tableView": false,
+                          "delimiter": false,
+                          "requireDecimal": false,
+                          "inputFormat": "plain",
+                          "truncateMultipleSpaces": false,
+                          "key": "timePermitted1",
+                          "type": "number",
+                          "input": true
+                        },
+                        {
+                          "label": "Corrective Actions",
+                          "editor": "ace",
+                          "tableView": true,
+                          "key": "correctiveActions1",
+                          "type": "textarea",
+                          "input": true
+                        }
+                      ]
+                    }
+                  ],
+                  "size": "md",
+                  "width": 3,
+                  "offset": 0,
+                  "push": 0,
+                  "pull": 0,
+                  "currentWidth": 3
+                }
+              ],
+              "key": "columns1",
+              "type": "columns",
+              "input": false,
+              "tableView": false
+            }
+          ]
+        },
+        {
+          "label": "Re-therm Steps",
+          "key": "reThermSteps",
+          "components": [
+            {
+              "label": "Enable",
+              "tableView": false,
+              "key": "reThermEnable",
+              "type": "checkbox",
+              "input": true,
+              "defaultValue": false
+            },
+            {
+              "label": "Columns",
+              "columns": [
+                {
+                  "components": [
+                    {
+                      "title": "Re-therm Methods",
+                      "collapsible": false,
+                      "key": "reThermMethods",
+                      "type": "panel",
+                      "label": "Panel",
+                      "input": false,
+                      "tableView": false,
+                      "components": [
+                        {
+                          "label": "Enable",
+                          "tableView": false,
+                          "key": "enable5",
+                          "type": "checkbox",
+                          "input": true,
+                          "defaultValue": false
+                        },
+                        {
+                          "label": "Re-therm Methods",
+                          "editor": "ace",
+                          "tableView": true,
+                          "key": "reThermMethods1",
+                          "type": "textarea",
+                          "input": true
+                        }
+                      ]
+                    },
+                    {
+                      "label": "reThermMethods1Array",
+                      "calculateValue": "value = data.reThermMethods1.trim().split('\\n')",
+                      "key": "reThermMethods1Array",
+                      "type": "hidden",
+                      "input": true,
+                      "tableView": false
+                    }
+                  ],
+                  "width": 3,
+                  "offset": 0,
+                  "push": 0,
+                  "pull": 0,
+                  "size": "md",
+                  "currentWidth": 3
+                },
+                {
+                  "components": [
+                    {
+                      "title": "Temperature",
+                      "collapsible": false,
+                      "key": "temperature",
+                      "type": "panel",
+                      "label": "Panel",
+                      "input": false,
+                      "tableView": false,
+                      "components": [
+                        {
+                          "label": "Critical Limit",
+                          "mask": false,
+                          "tableView": false,
+                          "delimiter": false,
+                          "requireDecimal": false,
+                          "inputFormat": "plain",
+                          "truncateMultipleSpaces": false,
+                          "key": "criticalLimit2",
+                          "type": "number",
+                          "input": true
+                        },
+                        {
+                          "label": "Corrective Actions",
+                          "editor": "ace",
+                          "tableView": true,
+                          "key": "correctiveActions2",
+                          "type": "textarea",
+                          "input": true
+                        }
+                      ]
+                    }
+                  ],
+                  "width": 3,
+                  "offset": 0,
+                  "push": 0,
+                  "pull": 0,
+                  "size": "md",
+                  "currentWidth": 3
+                },
+                {
+                  "components": [],
+                  "size": "md",
+                  "width": 3,
+                  "offset": 0,
+                  "push": 0,
+                  "pull": 0,
+                  "currentWidth": 3
+                },
+                {
+                  "components": [],
+                  "size": "md",
+                  "width": 3,
+                  "offset": 0,
+                  "push": 0,
+                  "pull": 0,
+                  "currentWidth": 3
+                }
+              ],
+              "key": "columns6",
+              "type": "columns",
+              "input": false,
+              "tableView": false
+            }
+          ]
+        },
+        {
+          "label": "Service Steps",
+          "key": "serviceSteps",
+          "components": [
+            {
+              "label": "Enable",
+              "tableView": false,
+              "key": "serviceEnable",
+              "type": "checkbox",
+              "input": true,
+              "defaultValue": false
+            },
+            {
+              "label": "Columns",
+              "columns": [
+                {
+                  "components": [
+                    {
+                      "title": "Service Methods",
+                      "collapsible": false,
+                      "key": "serviceMethods",
+                      "type": "panel",
+                      "label": "Panel",
+                      "input": false,
+                      "tableView": false,
+                      "components": [
+                        {
+                          "label": "Enable",
+                          "tableView": false,
+                          "defaultValue": false,
+                          "key": "enable52",
+                          "type": "checkbox",
+                          "input": true
+                        },
+                        {
+                          "label": "Service Methods",
+                          "editor": "ace",
+                          "autoExpand": false,
+                          "tableView": true,
+                          "key": "reThermMethods2",
+                          "type": "textarea",
+                          "input": true
+                        },
+                        {
+                          "label": "reThermMethods2Array",
+                          "calculateValue": "value = data.reThermMethods2.trim().split('\\n')",
+                          "key": "reThermMethods2Array",
+                          "type": "hidden",
+                          "input": true,
+                          "tableView": false
+                        }
+                      ]
+                    }
+                  ],
+                  "width": 3,
+                  "offset": 0,
+                  "push": 0,
+                  "pull": 0,
+                  "size": "md",
+                  "currentWidth": 3
+                },
+                {
+                  "components": [
+                    {
+                      "title": "Temperature",
+                      "collapsible": false,
+                      "key": "temperature2",
+                      "type": "panel",
+                      "label": "Panel",
+                      "input": false,
+                      "tableView": false,
+                      "components": [
+                        {
+                          "label": "Critical Limit",
+                          "mask": false,
+                          "tableView": false,
+                          "delimiter": false,
+                          "requireDecimal": false,
+                          "inputFormat": "plain",
+                          "truncateMultipleSpaces": false,
+                          "key": "criticalLimit2113",
+                          "type": "number",
+                          "input": true
+                        },
+                        {
+                          "label": "Corrective Actions",
+                          "editor": "ace",
+                          "autoExpand": false,
+                          "tableView": true,
+                          "key": "correctiveActions23",
+                          "type": "textarea",
+                          "input": true
+                        }
+                      ]
+                    }
+                  ],
+                  "width": 3,
+                  "offset": 0,
+                  "push": 0,
+                  "pull": 0,
+                  "size": "md",
+                  "currentWidth": 3
+                },
+                {
+                  "components": [],
+                  "size": "md",
+                  "width": 3,
+                  "offset": 0,
+                  "push": 0,
+                  "pull": 0,
+                  "currentWidth": 3
+                },
+                {
+                  "components": [],
+                  "size": "md",
+                  "width": 3,
+                  "offset": 0,
+                  "push": 0,
+                  "pull": 0,
+                  "currentWidth": 3
+                }
+              ],
+              "key": "columns64",
+              "type": "columns",
+              "input": false,
+              "tableView": false
+            }
+          ]
+        }
+      ],
+      "verticalLayout": true,
+      "key": "tabs",
+      "type": "tabs",
+      "input": false,
+      "tableView": false
+    },
+    {
+      "html": "<p><strong>End User</strong></p>",
+      "label": "Content",
+      "refreshOnChange": false,
+      "key": "content4",
+      "type": "content",
+      "input": false,
+      "tableView": false
+    },
+    {
+      "title": "Process Information",
+      "collapsible": true,
+      "key": "productInformation1",
+      "type": "panel",
+      "label": "Panel",
+      "collapsed": true,
+      "input": false,
+      "tableView": false,
+      "components": [
+        {
+          "label": "Columns",
+          "columns": [
+            {
+              "components": [
+                {
+                  "label": "n3",
+                  "key": "n3",
+                  "type": "well",
+                  "input": false,
+                  "tableView": false,
+                  "components": [
+                    {
+                      "label": "Product",
+                      "tableView": true,
+                      "key": "product",
+                      "customConditional": "show = data.productInput === 'freeText'",
+                      "type": "textfield",
+                      "input": true
+                    },
+                    {
+                      "label": "Select Product",
+                      "widget": "choicesjs",
+                      "tableView": true,
+                      "key": "selectProduct",
+                      "customConditional": "show = data.productInput === 'productDatabase'",
+                      "type": "select",
+                      "input": true
+                    },
+                    {
+                      "label": "Assigned ID",
+                      "disabled": true,
+                      "tableView": true,
+                      "key": "assignedId",
+                      "customConditional": "show = data.productOptions.assignUniqueId",
+                      "type": "textfield",
+                      "input": true
+                    },
+                    {
+                      "label": "Process Steps",
+                      "optionsLabelPosition": "right",
+                      "tableView": false,
+                      "values": [
+                        {
+                          "label": "Cook",
+                          "value": "cook",
+                          "shortcut": ""
+                        },
+                        {
+                          "label": "Chill",
+                          "value": "chill",
+                          "shortcut": ""
+                        },
+                        {
+                          "label": "Re-therm",
+                          "value": "reTherm",
+                          "shortcut": ""
+                        },
+                        {
+                          "label": "Service",
+                          "value": "service",
+                          "shortcut": ""
+                        }
+                      ],
+                      "key": "processSteps",
+                      "logic": [
+                        {
+                          "name": "get data source",
+                          "trigger": {
+                            "type": "javascript",
+                            "javascript": "result = true"
+                          },
+                          "actions": [
+                            {
+                              "name": "get data source",
+                              "type": "mergeComponentSchema",
+                              "schemaDefinition": "const steps = [\n  {\n    label: 'Cook',\n    value: data.cookEnable\n  },\n  {\n    label: 'Chill',\n    value: data.chillEnable  \n  },\n  {\n    label: 'Re-therm',\n    value: data.reThermEnable,\n  },\n  {\n    label: 'Service',\n    value: data.serviceEnable\n  }\n]\n\nlet values = steps.map(item => {\n  if(item.value) {\n   return {\n     label: item.label,\n     value: item.label\n   } \n  } else {\n    return false\n  }\n})\n\nvalues = values.filter(value => value !== false)\nschema = { values, hidden: values.length === 0 }"
+                            }
+                          ]
+                        }
+                      ],
+                      "type": "selectboxes",
+                      "input": true,
+                      "inputType": "checkbox"
+                    }
+                  ]
+                }
+              ],
+              "width": 3,
+              "offset": 0,
+              "push": 0,
+              "pull": 0,
+              "size": "md",
+              "currentWidth": 3
+            },
+            {
+              "components": [
+                {
+                  "label": "Cook",
+                  "key": "cookwell",
+                  "type": "well",
+                  "input": false,
+                  "tableView": false,
+                  "components": [
+                    {
+                      "label": "Cook Type",
+                      "optionsLabelPosition": "right",
+                      "inline": false,
+                      "tableView": false,
+                      "values": [
+                        {
+                          "label": "Full Cook",
+                          "value": "fullCook",
+                          "shortcut": ""
+                        },
+                        {
+                          "label": "Seal | Sear | Partial Cook",
+                          "value": "sealSearPartialCook",
+                          "shortcut": ""
+                        },
+                        {
+                          "label": "Sous Vide",
+                          "value": "sousVide",
+                          "shortcut": ""
+                        },
+                        {
+                          "label": "6D Process (Listeria)",
+                          "value": "6DProcessListeria",
+                          "shortcut": ""
+                        },
+                        {
+                          "label": "6D Process (Clostridium)",
+                          "value": "6DProcessClostridium",
+                          "shortcut": ""
+                        }
+                      ],
+                      "key": "cook",
+                      "customConditional": "show = data.processSteps.Cook ",
+                      "logic": [
+                        {
+                          "name": "get data source",
+                          "trigger": {
+                            "type": "javascript",
+                            "javascript": "result = true"
+                          },
+                          "actions": [
+                            {
+                              "name": "get data source",
+                              "type": "mergeComponentSchema",
+                              "schemaDefinition": "const types = [\n  {\n    label: 'Full Cook',\n    value: data.enable\n  },\n  {\n    label: 'Seal | Sear | Partial Cook',\n    value: data.enable1\n  },\n  {\n    label: 'Sous Vide',\n    value: data.enable2\n  },\n  {\n    label: '6D Process (Listeria)',\n    value: data.enable6\n  },\n  {\n    label: '6D Process (Clostridium)',\n    value: data.enable7\n  }\n]\n\nlet values = types.map(item => {\n  if(item.value) {\n    return {\n      label: item.label,\n      value: item.label\n    }\n  } else {\n    return false\n  }\n})\n\nvalues = values.filter(value => value !== false)\nschema = { values, hidden: values.length === 0}"
+                            }
+                          ]
+                        }
+                      ],
+                      "type": "radio",
+                      "input": true
+                    },
+                    {
+                      "label": "SV",
+                      "key": "sv",
+                      "conditional": {
+                        "show": true,
+                        "when": "cook",
+                        "eq": "sousVide"
+                      },
+                      "customConditional": "show = data.cook === 'Sous Vide'",
+                      "type": "well",
+                      "input": false,
+                      "tableView": false,
+                      "components": [
+                        {
+                          "html": "<p><strong>Sous Vide Parameters</strong></p>",
+                          "label": "Content",
+                          "refreshOnChange": false,
+                          "key": "content7",
+                          "type": "content",
+                          "input": false,
+                          "tableView": false
+                        },
+                        {
+                          "label": "Product Category",
+                          "optionsLabelPosition": "right",
+                          "inline": false,
+                          "tableView": false,
+                          "values": [
+                            {
+                              "label": "Category 1",
+                              "value": "category1",
+                              "shortcut": ""
+                            },
+                            {
+                              "label": "Category 2",
+                              "value": "category2",
+                              "shortcut": ""
+                            }
+                          ],
+                          "key": "productCategory",
+                          "type": "radio",
+                          "input": true
+                        },
+                        {
+                          "label": "Product Thickness (cm)",
+                          "widget": "choicesjs",
+                          "tableView": true,
+                          "data": {
+                            "values": [
+                              {
+                                "label": ".5",
+                                "value": "5"
+                              },
+                              {
+                                "label": "1",
+                                "value": "19"
+                              },
+                              {
+                                "label": "2",
+                                "value": "50"
+                              },
+                              {
+                                "label": "3",
+                                "value": "90"
+                              },
+                              {
+                                "label": "4",
+                                "value": "150"
+                              },
+                              {
+                                "label": "5",
+                                "value": "210"
+                              },
+                              {
+                                "label": "6",
+                                "value": "285"
+                              }
+                            ]
+                          },
+                          "key": "productThickness",
+                          "customConditional": "show = data.productCategory === 'category1'",
+                          "type": "select",
+                          "input": true
+                        },
+                        {
+                          "label": "Cook Temperature",
+                          "widget": "choicesjs",
+                          "tableView": true,
+                          "data": {
+                            "values": [
+                              {
+                                "label": "55",
+                                "value": "55"
+                              },
+                              {
+                                "label": "56",
+                                "value": "56"
+                              },
+                              {
+                                "label": "57",
+                                "value": "57"
+                              },
+                              {
+                                "label": "58",
+                                "value": "58"
+                              },
+                              {
+                                "label": "59",
+                                "value": "59"
+                              },
+                              {
+                                "label": "60",
+                                "value": "60"
+                              },
+                              {
+                                "label": "61",
+                                "value": "61"
+                              },
+                              {
+                                "label": "62",
+                                "value": "62"
+                              },
+                              {
+                                "label": "63",
+                                "value": "63"
+                              },
+                              {
+                                "label": "64",
+                                "value": "64"
+                              },
+                              {
+                                "label": "65",
+                                "value": "65"
+                              },
+                              {
+                                "label": "66",
+                                "value": "66"
+                              },
+                              {
+                                "label": "67",
+                                "value": "67"
+                              },
+                              {
+                                "label": "68",
+                                "value": "68"
+                              },
+                              {
+                                "label": "69",
+                                "value": "69"
+                              },
+                              {
+                                "label": "70",
+                                "value": "70"
+                              },
+                              {
+                                "label": "71",
+                                "value": "71"
+                              },
+                              {
+                                "label": "72",
+                                "value": "72"
+                              },
+                              {
+                                "label": "73",
+                                "value": "73"
+                              },
+                              {
+                                "label": "74",
+                                "value": "74"
+                              },
+                              {
+                                "label": "75",
+                                "value": "75"
+                              }
+                            ]
+                          },
+                          "key": "cookTemperature",
+                          "logic": [
+                            {
+                              "name": "control",
+                              "trigger": {
+                                "type": "javascript",
+                                "javascript": "result = data.productCategory === 'category1' && data.productThickness"
+                              },
+                              "actions": [
+                                {
+                                  "name": "control value",
+                                  "type": "value",
+                                  "value": "const opts = [\n  {\n    label: 55,\n    value: 200\n  },\n  {\n    label: 56,\n    value: 147\n  },\n  {\n    label: 57,\n    value: 109\n  },\n  {\n    label: 58,\n    value: 80\n  },\n  {\n    label: 59,\n    value: 59\n  },\n  {\n    label: 60,\n    value: 44\n  },\n  {\n    label: 61,\n    value: 32\n  },\n  {\n    label: 62,\n    value: 24\n  },\n  {\n    label: 63,\n    value: 18\n  },\n  {\n    label: 64,\n    value: 13\n  },\n  {\n    label: 65,\n    value: 10\n  },\n  {\n    label: 66,\n    value: 7\n  },\n  {\n    label: 67,\n    value: 5\n  },\n  {\n    label: 68,\n    value: 4\n  },\n  {\n    label: 69,\n    value: 3\n  },\n  {\n    label: 70,\n    value: 2\n  },\n  {\n    label: 71,\n    value: 1.5\n  },\n  {\n    label: 72,\n    value: 1.083\n  },\n  {\n    label: 73,\n    value: .8\n  },\n  {\n    label: 74,\n    value: .6\n  },\n  {\n    label: 75,\n    value: .433\n  }\n]\n\nconst opt = opts.find(opt => opt.label === Number(value))\n\nif (opt.value + data.productThickness > 360) {\n  value = ''\n}"
+                                },
+                                {
+                                  "name": "control data source",
+                                  "type": "mergeComponentSchema",
+                                  "schemaDefinition": "const opts = [\n  {\n    label: 55,\n    value: 200\n  },\n  {\n    label: 56,\n    value: 147\n  },\n  {\n    label: 57,\n    value: 109\n  },\n  {\n    label: 58,\n    value: 80\n  },\n  {\n    label: 59,\n    value: 59\n  },\n  {\n    label: 60,\n    value: 44\n  },\n  {\n    label: 61,\n    value: 32\n  },\n  {\n    label: 62,\n    value: 24\n  },\n  {\n    label: 63,\n    value: 18\n  },\n  {\n    label: 64,\n    value: 13\n  },\n  {\n    label: 65,\n    value: 10\n  },\n  {\n    label: 66,\n    value: 7\n  },\n  {\n    label: 67,\n    value: 5\n  },\n  {\n    label: 68,\n    value: 4\n  },\n  {\n    label: 69,\n    value: 3\n  },\n  {\n    label: 70,\n    value: 2\n  },\n  {\n    label: 71,\n    value: 1.5\n  },\n  {\n    label: 72,\n    value: 1.083\n  },\n  {\n    label: 73,\n    value: .8\n  },\n  {\n    label: 74,\n    value: .6\n  },\n  {\n    label: 75,\n    value: .433\n  }\n]\n\nif(data.productCategory === 'category1' && typeof data.productThickness === 'number') {\n  const filteredOpts = opts.filter(opt => opt.value + data.productThickness <= 360)\n  schema = { data: { values: filteredOpts.map(opt => ({ label: opt.label, value: opt.label})) } }\n}"
+                                }
+                              ]
+                            }
+                          ],
+                          "type": "select",
+                          "input": true
+                        },
+                        {
+                          "label": "cookTemperatureTime",
+                          "calculateValue": "const opts = [\n  {\n    label: 55,\n    value: 200\n  },\n  {\n    label: 56,\n    value: 147\n  },\n  {\n    label: 57,\n    value: 109\n  },\n  {\n    label: 58,\n    value: 80\n  },\n  {\n    label: 59,\n    value: 59\n  },\n  {\n    label: 60,\n    value: 44\n  },\n  {\n    label: 61,\n    value: 32\n  },\n  {\n    label: 62,\n    value: 24\n  },\n  {\n    label: 63,\n    value: 18\n  },\n  {\n    label: 64,\n    value: 13\n  },\n  {\n    label: 65,\n    value: 10\n  },\n  {\n    label: 66,\n    value: 7\n  },\n  {\n    label: 67,\n    value: 5\n  },\n  {\n    label: 68,\n    value: 4\n  },\n  {\n    label: 69,\n    value: 3\n  },\n  {\n    label: 70,\n    value: 2\n  },\n  {\n    label: 71,\n    value: 1.5\n  },\n  {\n    label: 72,\n    value: 1.083\n  },\n  {\n    label: 73,\n    value: .8\n  },\n  {\n    label: 74,\n    value: .6\n  },\n  {\n    label: 75,\n    value: .433\n  }\n]\n\nconsole.log(opts.find(opt => opt.label === Number(data.cookTemperature)).value)\nvalue = opts.find(opt => opt.label === Number(data.cookTemperature)).value",
+                          "key": "cookTemperatureTime",
+                          "type": "hidden",
+                          "input": true,
+                          "tableView": false
+                        },
+                        {
+                          "label": "Time Required (mins)",
+                          "disabled": true,
+                          "tableView": true,
+                          "calculateValue": "let minutes = 0\n\nif(data.productCategory === 'category1') {\n  minutes = (data.productThickness || 0) + (data.cookTemperatureTime || 0)\n} else if(data.productCategory === 'category2') {\n  minutes = data.cookTemperatureTime\n}\n\nvalue = minutes",
+                          "key": "timeRequired",
+                          "type": "textfield",
+                          "input": true
+                        }
+                      ]
+                    },
+                    {
+                      "label": "List",
+                      "key": "list",
+                      "conditional": {
+                        "show": true,
+                        "when": "cook",
+                        "eq": "6DProcessListeria"
+                      },
+                      "customConditional": "show = data.cook === '6D Process (Listeria)'",
+                      "type": "well",
+                      "input": false,
+                      "tableView": false,
+                      "components": [
+                        {
+                          "html": "<p><strong>6D Process (Listeria)</strong></p>",
+                          "label": "Content",
+                          "refreshOnChange": false,
+                          "key": "content8",
+                          "type": "content",
+                          "input": false,
+                          "tableView": false
+                        },
+                        {
+                          "label": "Internal Product Temperature",
+                          "widget": "choicesjs",
+                          "tableView": true,
+                          "data": {
+                            "values": [
+                              {
+                                "label": "63",
+                                "value": "63"
+                              },
+                              {
+                                "label": "64",
+                                "value": "64"
+                              },
+                              {
+                                "label": "65",
+                                "value": "65"
+                              },
+                              {
+                                "label": "66",
+                                "value": "66"
+                              },
+                              {
+                                "label": "67",
+                                "value": "67"
+                              },
+                              {
+                                "label": "68",
+                                "value": "68"
+                              },
+                              {
+                                "label": "69",
+                                "value": "69"
+                              },
+                              {
+                                "label": "70",
+                                "value": "70"
+                              },
+                              {
+                                "label": "71",
+                                "value": "71"
+                              },
+                              {
+                                "label": "72",
+                                "value": "72"
+                              },
+                              {
+                                "label": "73",
+                                "value": "73"
+                              },
+                              {
+                                "label": "74",
+                                "value": "74"
+                              },
+                              {
+                                "label": "75",
+                                "value": "75"
+                              },
+                              {
+                                "label": "76",
+                                "value": "76"
+                              },
+                              {
+                                "label": "77",
+                                "value": "77"
+                              },
+                              {
+                                "label": "78",
+                                "value": "78"
+                              },
+                              {
+                                "label": "79",
+                                "value": "79"
+                              },
+                              {
+                                "label": "80",
+                                "value": "80"
+                              },
+                              {
+                                "label": "81",
+                                "value": "81"
+                              },
+                              {
+                                "label": "82",
+                                "value": "82"
+                              },
+                              {
+                                "label": "83",
+                                "value": "83"
+                              },
+                              {
+                                "label": "84",
+                                "value": "84"
+                              },
+                              {
+                                "label": "85",
+                                "value": "85"
+                              }
+                            ]
+                          },
+                          "key": "internalProductTemperature",
+                          "type": "select",
+                          "input": true
+                        },
+                        {
+                          "label": "internalProductTemperatureTime",
+                          "calculateValue": "const opts = [\n  { label: 63, value: 17 },\n  { label: 64, value: 12.7 },\n  { label: 65, value: 9.3 },\n  { label: 66, value: 6.8 },\n  { label: 67, value: 5 },\n  { label: 68, value: 3.7 },\n  { label: 69, value: 2.7 },\n  { label: 70, value: 2 },\n  { label: 71, value: 1.5 },\n  { label: 72, value: 1 },\n  { label: 73, value: 0.8 },\n  { label: 74, value: 0.6 },\n  { label: 75, value: 0.4 },\n  { label: 76, value: 0.3 },\n  { label: 77, value: 0.2 },\n  { label: 78, value: 0.2 },\n  { label: 79, value: 0.1 },\n  { label: 80, value: 0.09 },\n  { label: 81, value: 0.07 },\n  { label: 82, value: 0.05 },\n  { label: 83, value: 0.03 },\n  { label: 84, value: 0.03 },\n  { label: 85, value: 0.02 },\n]\n\nconst opt = opts.find(opt => opt.label === Number(data.internalProductTemperature))\nvalue = opt.value ? opt.value : ''",
+                          "key": "internalProductTemperatureTime",
+                          "type": "hidden",
+                          "input": true,
+                          "tableView": false
+                        },
+                        {
+                          "label": "Cook Time for 6D Process (mins)",
+                          "disabled": true,
+                          "tableView": true,
+                          "calculateValue": "value = data.internalProductTemperatureTime",
+                          "key": "cookTimeFor6DProcess",
+                          "type": "textfield",
+                          "input": true
+                        }
+                      ]
+                    },
+                    {
+                      "label": "CB",
+                      "key": "cb",
+                      "conditional": {
+                        "show": true,
+                        "when": "cook",
+                        "eq": "6DProcessClostridium"
+                      },
+                      "customConditional": "show = data.cook === '6D Process (Clostridium)'",
+                      "type": "well",
+                      "input": false,
+                      "tableView": false,
+                      "components": [
+                        {
+                          "html": "<p><strong>6D Process (Clostridium)</strong></p>",
+                          "label": "Content",
+                          "refreshOnChange": false,
+                          "key": "content9",
+                          "type": "content",
+                          "input": false,
+                          "tableView": false
+                        },
+                        {
+                          "label": "Internal Product Temperature",
+                          "widget": "choicesjs",
+                          "tableView": true,
+                          "data": {
+                            "values": [
+                              {
+                                "label": "85",
+                                "value": "85"
+                              },
+                              {
+                                "label": "86",
+                                "value": "86"
+                              },
+                              {
+                                "label": "87",
+                                "value": "87"
+                              },
+                              {
+                                "label": "88",
+                                "value": "88"
+                              },
+                              {
+                                "label": "89",
+                                "value": "89"
+                              },
+                              {
+                                "label": "90",
+                                "value": "90"
+                              },
+                              {
+                                "label": "91",
+                                "value": "91"
+                              },
+                              {
+                                "label": "92",
+                                "value": "92"
+                              },
+                              {
+                                "label": "93",
+                                "value": "93"
+                              },
+                              {
+                                "label": "94",
+                                "value": "94"
+                              },
+                              {
+                                "label": "95",
+                                "value": "95"
+                              },
+                              {
+                                "label": "96",
+                                "value": "96"
+                              },
+                              {
+                                "label": "97",
+                                "value": "97"
+                              },
+                              {
+                                "label": "98",
+                                "value": "98"
+                              },
+                              {
+                                "label": "99",
+                                "value": "99"
+                              },
+                              {
+                                "label": "100",
+                                "value": "100"
+                              }
+                            ]
+                          },
+                          "key": "internalProductTemperature1",
+                          "type": "select",
+                          "input": true
+                        },
+                        {
+                          "label": "internalProductTemperature1Time",
+                          "calculateValue": "const opts = [\n  { label: 85, value: 51.8 },\n  { label: 86, value: 37 },\n  { label: 87, value: 27 },\n  { label: 88, value: 19.2 },\n  { label: 89, value: 13.9 },\n  { label: 90, value: 10 },\n  { label: 91, value: 7.9 },\n  { label: 92, value: 6.3 },\n  { label: 93, value: 5 },\n  { label: 94, value: 4 },\n  { label: 95, value: 3.2 },\n  { label: 96, value: 2.5 },\n  { label: 97, value: 2 },\n  { label: 98, value: 1.6 },\n  { label: 99, value: 1.3 },\n  { label: 100, value: 1 },\n];\n\nconst opt = opts.find(opt => opt.label === Number(data.internalProductTemperature1))\nvalue = opt.value ? opt.value : ''",
+                          "key": "internalProductTemperature1Time",
+                          "type": "hidden",
+                          "input": true,
+                          "tableView": false
+                        },
+                        {
+                          "label": "Cook Time for 6D Process (mins)",
+                          "disabled": true,
+                          "tableView": true,
+                          "calculateValue": "value = data.internalProductTemperature1Time",
+                          "key": "cookTimeFor6DProcess1",
+                          "type": "textfield",
+                          "input": true
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "width": 3,
+              "offset": 0,
+              "push": 0,
+              "pull": 0,
+              "size": "md",
+              "currentWidth": 3
+            },
+            {
+              "components": [
+                {
+                  "label": "W44",
+                  "key": "w44",
+                  "type": "well",
+                  "input": false,
+                  "tableView": false,
+                  "components": [
+                    {
+                      "label": "Cook Method",
+                      "optionsLabelPosition": "right",
+                      "inline": false,
+                      "tableView": false,
+                      "values": [
+                        {
+                          "label": "From Mr. ACE",
+                          "value": "fromMrAce",
+                          "shortcut": ""
+                        }
+                      ],
+                      "key": "cookMethod1",
+                      "customConditional": "show = data.enable3",
+                      "logic": [
+                        {
+                          "name": "get values",
+                          "trigger": {
+                            "type": "javascript",
+                            "javascript": "result = data.cookMethods1Array.length"
+                          },
+                          "actions": [
+                            {
+                              "name": "get values",
+                              "type": "mergeComponentSchema",
+                              "schemaDefinition": "let values = data.cookMethods1Array.map(item => {\n  if(!!item) {\n    return {\n      label: item,\n      value: item\n    }\n  } else {\n    return false\n  }\n})\n\nvalues = values.filter(value => value !== false)\nschema = { values }"
+                            }
+                          ]
+                        }
+                      ],
+                      "type": "radio",
+                      "input": true
+                    },
+                    {
+                      "label": "Chill Method",
+                      "optionsLabelPosition": "right",
+                      "inline": false,
+                      "tableView": false,
+                      "values": [
+                        {
+                          "label": "From Mr. ACE",
+                          "value": "fromMrAce",
+                          "shortcut": ""
+                        }
+                      ],
+                      "key": "chillMethod",
+                      "customConditional": "show = data.enable4",
+                      "logic": [
+                        {
+                          "name": "get values",
+                          "trigger": {
+                            "type": "javascript",
+                            "javascript": "result = data.chillMethods1Array.length"
+                          },
+                          "actions": [
+                            {
+                              "name": "get values",
+                              "type": "mergeComponentSchema",
+                              "schemaDefinition": "let values = data.chillMethods1Array.map(item => {\n  if(!!item) {\n    return {\n      label: item,\n      value: item\n    }\n  } else {\n    return false\n  }\n})\n\nvalues = values.filter(value => value !== false)\nschema = { values }"
+                            }
+                          ]
+                        }
+                      ],
+                      "type": "radio",
+                      "input": true
+                    }
+                  ]
+                }
+              ],
+              "size": "md",
+              "width": 3,
+              "offset": 0,
+              "push": 0,
+              "pull": 0,
+              "currentWidth": 3
+            },
+            {
+              "components": [
+                {
+                  "label": "w5",
+                  "key": "w5",
+                  "type": "well",
+                  "input": false,
+                  "tableView": false,
+                  "components": [
+                    {
+                      "label": "Re-therm Method",
+                      "optionsLabelPosition": "right",
+                      "inline": false,
+                      "tableView": false,
+                      "values": [
+                        {
+                          "label": "from Mr. ACE",
+                          "value": "fromMrAce",
+                          "shortcut": ""
+                        }
+                      ],
+                      "key": "reThermMethod",
+                      "customConditional": "show = data.enable5",
+                      "logic": [
+                        {
+                          "name": "get values",
+                          "trigger": {
+                            "type": "javascript",
+                            "javascript": "result = data.reThermMethods1Array.length"
+                          },
+                          "actions": [
+                            {
+                              "name": "get values",
+                              "type": "mergeComponentSchema",
+                              "schemaDefinition": "let values = data.reThermMethods1Array.map(item => {\n  if(!!item){\n    return {\n      label: item,\n      value: item\n    }\n  } else {\n    return false\n  }\n})\n\nvalues = values.filter(value => value !== false)\nschema = { values }"
+                            }
+                          ]
+                        }
+                      ],
+                      "type": "radio",
+                      "input": true
+                    }
+                  ]
+                },
+                {
+                  "label": "w6",
+                  "key": "w6",
+                  "type": "well",
+                  "input": false,
+                  "tableView": false,
+                  "components": [
+                    {
+                      "label": "Service Method",
+                      "optionsLabelPosition": "right",
+                      "inline": false,
+                      "tableView": false,
+                      "values": [
+                        {
+                          "label": "From Mr. ACE",
+                          "value": "fromMrAce",
+                          "shortcut": ""
+                        }
+                      ],
+                      "key": "serviceMethod",
+                      "customConditional": "show = data.enable52",
+                      "logic": [
+                        {
+                          "name": "get values",
+                          "trigger": {
+                            "type": "javascript",
+                            "javascript": "result = data.reThermMethods2Array.length"
+                          },
+                          "actions": [
+                            {
+                              "name": "get values",
+                              "type": "mergeComponentSchema",
+                              "schemaDefinition": "let values = data.reThermMethods2Array.map(item => {\n  if(!!item) {\n    return {\n      label: item,\n      value: item\n    }\n  } else {\n    return false\n  }\n})\n\nvalues = values.filter(value => value !== false)\nschema = { values }"
+                            }
+                          ]
+                        }
+                      ],
+                      "type": "radio",
+                      "input": true
+                    }
+                  ]
+                }
+              ],
+              "size": "md",
+              "width": 3,
+              "offset": 0,
+              "push": 0,
+              "pull": 0,
+              "currentWidth": 3
+            }
+          ],
+          "key": "columns7",
+          "type": "columns",
+          "input": false,
+          "tableView": false
+        }
+      ]
+    },
+    {
+      "title": "Process Report",
+      "collapsible": true,
+      "key": "processReport",
+      "type": "panel",
+      "label": "Panel",
+      "input": false,
+      "tableView": false,
+      "components": [
+        {
+          "label": "Columns",
+          "columns": [
+            {
+              "components": [
+                {
+                  "label": "W33",
+                  "key": "w33",
+                  "type": "well",
+                  "input": false,
+                  "tableView": false,
+                  "components": [
+                    {
+                      "html": "<p><strong>Status&nbsp;</strong></p>",
+                      "label": "Content",
+                      "refreshOnChange": false,
+                      "key": "content1",
+                      "type": "content",
+                      "input": false,
+                      "tableView": false
+                    },
+                    {
+                      "label": "Product",
+                      "prefix": "Product",
+                      "hideLabel": true,
+                      "disabled": true,
+                      "tableView": true,
+                      "key": "product1",
+                      "type": "textfield",
+                      "input": true
+                    },
+                    {
+                      "label": "Cook Status",
+                      "prefix": "Cook Status",
+                      "hideLabel": true,
+                      "disabled": true,
+                      "tableView": true,
+                      "key": "cookStatus",
+                      "logic": [
+                        {
+                          "name": "get value",
+                          "trigger": {
+                            "type": "javascript",
+                            "javascript": "result = true"
+                          },
+                          "actions": [
+                            {
+                              "name": "get value",
+                              "type": "value",
+                              "value": "const { productTemperature } = data.productTemperatureGrid.reduce((a, b) => {\n  if(a.productTemperature >= b.productTemperature) {\n    return a\n  } else {\n    return b\n  }\n})\n\nif(data.processSteps.Cook && typeof productTemperature === 'number') {\n  if(data.cook === 'Full Cook' && typeof data.criticalLimit === 'number') {\n    value = productTemperature > data.criticalLimit ? 'Pass' : 'Fail'\n  } else if(data.cook === 'Seal | Sear | Partial Cook' && typeof data.criticalLimit1 === 'number') {\n    value = productTemperature > data.criticalLimit1 ? 'Pass' : 'Fail'\n  } else {\n    value = null\n  }\n} else {\n  value = null\n}"
+                            }
+                          ]
+                        }
+                      ],
+                      "type": "textfield",
+                      "input": true
+                    },
+                    {
+                      "label": "Chill Status",
+                      "prefix": "Chill Status",
+                      "hideLabel": true,
+                      "disabled": true,
+                      "tableView": true,
+                      "key": "chillStatus",
+                      "type": "textfield",
+                      "input": true
+                    },
+                    {
+                      "label": "Re-therm Status",
+                      "prefix": "Re-therm Status",
+                      "hideLabel": true,
+                      "disabled": true,
+                      "tableView": true,
+                      "calculateValue": "const productTemperature = data.productTemperatureGrid[0].productTemperature\n\nif(data.processSteps['Re-therm'] && typeof productTemperature === 'number' && typeof data.criticalLimit2 === 'number') {\n  if(productTemperature > data.criticalLimit2) {\n    value = 'Pass'\n  } else {\n    value = 'Fail'\n  }\n} else {\n  value = null\n}",
+                      "key": "reThermStatus",
+                      "type": "textfield",
+                      "input": true
+                    },
+                    {
+                      "label": "Service Status",
+                      "prefix": "Service Status",
+                      "hideLabel": true,
+                      "disabled": true,
+                      "tableView": true,
+                      "calculateValue": "const productTemperature = data.productTemperatureGrid[0].productTemperature\n\nif(data.processSteps.Service && typeof productTemperature === 'number' && typeof data.criticalLimit2113 === 'number') {\n  if(productTemperature > data.criticalLimit2113) {\n    value = 'Pass'\n  } else {\n    value = 'Fail'\n  }\n  \n} else {\n  value = null\n}",
+                      "key": "serviceStatus",
+                      "type": "textfield",
+                      "input": true
+                    }
+                  ]
+                }
+              ],
+              "width": 4,
+              "offset": 0,
+              "push": 0,
+              "pull": 0,
+              "size": "md",
+              "currentWidth": 4
+            },
+            {
+              "components": [
+                {
+                  "label": "W6",
+                  "key": "w7",
+                  "type": "well",
+                  "input": false,
+                  "tableView": false,
+                  "components": [
+                    {
+                      "html": "<p><strong>Cook Step</strong></p>",
+                      "label": "Content",
+                      "refreshOnChange": false,
+                      "key": "content2",
+                      "type": "content",
+                      "input": false,
+                      "tableView": false
+                    },
+                    {
+                      "label": "Cook Type",
+                      "prefix": "Cook Type",
+                      "hideLabel": true,
+                      "disabled": true,
+                      "tableView": true,
+                      "calculateValue": "value = data.processSteps.Cook ? data.cook : null",
+                      "key": "textField",
+                      "type": "textfield",
+                      "input": true
+                    },
+                    {
+                      "label": "Cook Time",
+                      "prefix": "Cook Time",
+                      "hideLabel": true,
+                      "disabled": true,
+                      "tableView": true,
+                      "calculateValue": "if(data.cook === 'Sous Vide'){\n  value = data.timeRequired\n} else if(data.cook === '6D Process (Listeria)') {\n  value = data.cookTimeFor6DProcess\n} else if(data.cook === '6D Process (Clostridium)') {\n  value = data.cookTimeFor6DProcess1\n}",
+                      "key": "cookTime",
+                      "customConditional": "show = data.cook === 'Sous Vide' || data.cook === '6D Process (Listeria)' || data.cook === '6D Process (Clostridium)' ",
+                      "type": "textfield",
+                      "input": true
+                    },
+                    {
+                      "label": "Cook Temp.",
+                      "prefix": "Cook Temp.",
+                      "hideLabel": true,
+                      "disabled": true,
+                      "tableView": true,
+                      "calculateValue": "if(data.cook === 'Full Cook') {\n  value = data.criticalLimit\n} else if(data.cook === 'Seal | Sear | Partial Cook') {\n  value = data.criticalLimit1\n} else if(data.cook === 'Sous Vide') {\n  value = data.cookTemperature\n} else if(data.cook === '6D Process (Listeria)') {\n  value = data.internalProductTemperature\n} else if(data.cook === '6D Process (Clostridium)') {\n  value = data.internalProductTemperature1\n}",
+                      "key": "cookTemp",
+                      "type": "textfield",
+                      "input": true
+                    }
+                  ]
+                },
+                {
+                  "label": "vv",
+                  "key": "vv",
+                  "type": "well",
+                  "input": false,
+                  "tableView": false,
+                  "components": [
+                    {
+                      "html": "<p><strong>Re-therm Step</strong></p>",
+                      "label": "Content",
+                      "refreshOnChange": false,
+                      "key": "content5",
+                      "type": "content",
+                      "input": false,
+                      "tableView": false
+                    },
+                    {
+                      "label": "Temperature",
+                      "prefix": "Temperature",
+                      "hideLabel": true,
+                      "disabled": true,
+                      "tableView": true,
+                      "calculateValue": "if(data.processSteps['Re-therm']) {\n  value = data.productTemperatureGrid[0].productTemperature\n} else {\n  value = null\n}",
+                      "key": "temperature1",
+                      "type": "textfield",
+                      "input": true
+                    }
+                  ]
+                },
+                {
+                  "label": "yy",
+                  "key": "yy",
+                  "type": "well",
+                  "input": false,
+                  "tableView": false,
+                  "components": [
+                    {
+                      "html": "<p><strong>Service Step</strong></p>",
+                      "label": "Content",
+                      "refreshOnChange": false,
+                      "key": "content6",
+                      "type": "content",
+                      "input": false,
+                      "tableView": false
+                    },
+                    {
+                      "label": "Temperature",
+                      "prefix": "Temperature",
+                      "hideLabel": true,
+                      "disabled": true,
+                      "tableView": true,
+                      "calculateValue": "if(data.processSteps.Service) {\n  value = data.productTemperatureGrid[0].productTemperature\n} else {\n  value = null\n}",
+                      "key": "temperature3",
+                      "type": "textfield",
+                      "input": true
+                    }
+                  ]
+                }
+              ],
+              "width": 4,
+              "offset": 0,
+              "push": 0,
+              "pull": 0,
+              "size": "md",
+              "currentWidth": 4
+            },
+            {
+              "components": [
+                {
+                  "label": "W7",
+                  "key": "w8",
+                  "type": "well",
+                  "input": false,
+                  "tableView": false,
+                  "components": [
+                    {
+                      "html": "<p><strong>Chill Step</strong></p>",
+                      "label": "Content",
+                      "refreshOnChange": false,
+                      "key": "content3",
+                      "type": "content",
+                      "input": false,
+                      "tableView": false
+                    },
+                    {
+                      "label": "W77",
+                      "key": "w77",
+                      "type": "well",
+                      "input": false,
+                      "tableView": false,
+                      "components": [
+                        {
+                          "label": "Chill Time Phase 1",
+                          "prefix": "Chill Time Phase 1",
+                          "hideLabel": true,
+                          "disabled": true,
+                          "tableView": true,
+                          "key": "chillTimePhase1",
+                          "type": "textfield",
+                          "input": true
+                        },
+                        {
+                          "label": "Phase 1 Status",
+                          "prefix": "Phase 1 Status",
+                          "hideLabel": true,
+                          "disabled": true,
+                          "tableView": true,
+                          "key": "phase1Status",
+                          "type": "textfield",
+                          "input": true
+                        }
+                      ]
+                    },
+                    {
+                      "label": "m",
+                      "key": "m",
+                      "type": "well",
+                      "input": false,
+                      "tableView": false,
+                      "components": [
+                        {
+                          "label": "Chill Time Phase 2",
+                          "prefix": "Chill Time Phase 2",
+                          "hideLabel": true,
+                          "disabled": true,
+                          "tableView": true,
+                          "key": "chillTimePhase2",
+                          "type": "textfield",
+                          "input": true
+                        },
+                        {
+                          "label": "Phase 2 Status",
+                          "prefix": "Phase 2 Status",
+                          "hideLabel": true,
+                          "disabled": true,
+                          "tableView": true,
+                          "key": "chillPhase2Status",
+                          "type": "textfield",
+                          "input": true
+                        }
+                      ]
+                    },
+                    {
+                      "label": "Total Time Chilled",
+                      "prefix": "Total Time Chilled",
+                      "hideLabel": true,
+                      "disabled": true,
+                      "tableView": true,
+                      "key": "totalTimeChilled",
+                      "type": "textfield",
+                      "input": true
+                    }
+                  ]
+                }
+              ],
+              "size": "md",
+              "width": 4,
+              "offset": 0,
+              "push": 0,
+              "pull": 0,
+              "currentWidth": 4
+            }
+          ],
+          "key": "columns",
+          "type": "columns",
+          "input": false,
+          "tableView": false
+        }
+      ],
+      "collapsed": true
+    },
+    {
+      "label": "Columns",
+      "columns": [
+        {
+          "components": [
+            {
+              "title": "Cook Step Status",
+              "collapsible": true,
+              "key": "cookStepStatus",
+              "type": "panel",
+              "label": "Panel",
+              "input": false,
+              "tableView": false,
+              "components": [
+                {
+                  "label": "Target Temp. Achieved",
+                  "prefix": "Target Temp. Achieved",
+                  "hideLabel": true,
+                  "disabled": true,
+                  "tableView": true,
+                  "calculateValue": "if(data.processSteps.Cook) {\n  value = data.productTemperatureGrid[0].productTemperature\n} else {\n  value = null\n}",
+                  "key": "targetTempAchieved",
+                  "type": "textfield",
+                  "input": true
+                },
+                {
+                  "label": "Time1",
+                  "optionsLabelPosition": "right",
+                  "inline": true,
+                  "hideLabel": true,
+                  "tableView": false,
+                  "defaultValue": {
+                    "timePassed": true,
+                    "timeRemaining": false
+                  },
+                  "values": [
+                    {
+                      "label": "Time Passed",
+                      "value": "timePassed",
+                      "shortcut": ""
+                    },
+                    {
+                      "label": "Time Remaining",
+                      "value": "timeRemaining",
+                      "shortcut": ""
+                    }
+                  ],
+                  "key": "time1",
+                  "type": "selectboxes",
+                  "input": true,
+                  "inputType": "checkbox"
+                },
+                {
+                  "label": "Cook Time Passed",
+                  "prefix": "Cook Time Passed",
+                  "hideLabel": true,
+                  "disabled": true,
+                  "tableView": true,
+                  "key": "cookTimePassed",
+                  "customConditional": "show = data.time1.timePassed",
+                  "attributes": {
+                    "style": "{ backgroundColor: red }"
+                  },
+                  "type": "textfield",
+                  "input": true
+                },
+                {
+                  "label": "Cook Time Remaining",
+                  "prefix": "Cook Time Remaining",
+                  "hideLabel": true,
+                  "disabled": true,
+                  "tableView": true,
+                  "key": "cookTimePassed1",
+                  "customConditional": "show = data.time1.timeRemaining",
+                  "type": "textfield",
+                  "input": true
+                },
+                {
+                  "label": "Status",
+                  "prefix": "Status",
+                  "hideLabel": true,
+                  "disabled": true,
+                  "tableView": true,
+                  "calculateValue": "const productTemperature = data.productTemperatureGrid[0].productTemperature\n\nif(data.processSteps.Cook && typeof productTemperature === 'number') {\n  if(data.cook === 'Full Cook' && typeof data.criticalLimit === 'number') {\n    value = productTemperature > data.criticalLimit ? 'Pass' : 'Fail'\n  } else if(data.cook === 'Seal | Sear | Partial Cook' && typeof data.criticalLimit1 === 'number') {\n    value = productTemperature > data.criticalLimit1 ? 'Pass' : 'Fail'\n  } else {\n    value = null\n  }\n} else {\n  value = null\n}",
+                  "key": "status",
+                  "type": "textfield",
+                  "input": true
+                }
+              ],
+              "collapsed": true
+            }
+          ],
+          "width": 4,
+          "offset": 0,
+          "push": 0,
+          "pull": 0,
+          "size": "md",
+          "currentWidth": 4
+        },
+        {
+          "components": [
+            {
+              "title": "Chill Step Status",
+              "collapsible": true,
+              "key": "chillStepStatus",
+              "type": "panel",
+              "label": "Panel",
+              "input": false,
+              "tableView": false,
+              "components": [
+                {
+                  "title": "Phase 1",
+                  "collapsible": true,
+                  "key": "phase1",
+                  "type": "panel",
+                  "label": "Panel",
+                  "input": false,
+                  "tableView": false,
+                  "components": [
+                    {
+                      "label": "Time1",
+                      "optionsLabelPosition": "right",
+                      "inline": true,
+                      "hideLabel": true,
+                      "tableView": false,
+                      "values": [
+                        {
+                          "label": "Time Passed",
+                          "value": "timePassed",
+                          "shortcut": ""
+                        },
+                        {
+                          "label": "Time Remaining",
+                          "value": "timeRemaining",
+                          "shortcut": ""
+                        }
+                      ],
+                      "key": "time3",
+                      "type": "selectboxes",
+                      "input": true,
+                      "inputType": "checkbox",
+                      "defaultValue": {
+                        "timePassed": true,
+                        "timeRemaining": false
+                      }
+                    },
+                    {
+                      "label": "Chill Time Passed",
+                      "prefix": "Chill Time Passed",
+                      "hideLabel": true,
+                      "disabled": true,
+                      "tableView": true,
+                      "key": "chillTimePassed",
+                      "customConditional": "show = data.time3.timePassed",
+                      "type": "textfield",
+                      "input": true
+                    },
+                    {
+                      "label": "Chill Time Remaining",
+                      "prefix": "Chill Time Remaining",
+                      "hideLabel": true,
+                      "disabled": true,
+                      "tableView": true,
+                      "key": "chillTimePassed1",
+                      "customConditional": "show = data.time3.timeRemaining",
+                      "type": "textfield",
+                      "input": true
+                    },
+                    {
+                      "label": "Phase 1 Status",
+                      "prefix": "Phase 1 Status",
+                      "hideLabel": true,
+                      "disabled": true,
+                      "tableView": true,
+                      "key": "statusPhase1",
+                      "type": "textfield",
+                      "input": true
+                    }
+                  ],
+                  "collapsed": true
+                },
+                {
+                  "title": "Phase 2",
+                  "collapsible": true,
+                  "key": "phase2",
+                  "type": "panel",
+                  "label": "Panel",
+                  "input": false,
+                  "tableView": false,
+                  "components": [
+                    {
+                      "label": "Time1",
+                      "optionsLabelPosition": "right",
+                      "inline": true,
+                      "hideLabel": true,
+                      "tableView": false,
+                      "defaultValue": {
+                        "timePassed": true,
+                        "timeRemaining": false
+                      },
+                      "values": [
+                        {
+                          "label": "Time Passed",
+                          "value": "timePassed",
+                          "shortcut": ""
+                        },
+                        {
+                          "label": "Time Remaining",
+                          "value": "timeRemaining",
+                          "shortcut": ""
+                        }
+                      ],
+                      "key": "time4",
+                      "type": "selectboxes",
+                      "input": true,
+                      "inputType": "checkbox"
+                    },
+                    {
+                      "label": "Chill Time Passed",
+                      "prefix": "Chill Time Passed",
+                      "hideLabel": true,
+                      "disabled": true,
+                      "tableView": true,
+                      "key": "chillTimePassed2",
+                      "customConditional": "show = data.time4.timePassed",
+                      "type": "textfield",
+                      "input": true
+                    },
+                    {
+                      "label": "Chill Time Remaining",
+                      "prefix": "Chill Time Remaining",
+                      "hideLabel": true,
+                      "disabled": true,
+                      "tableView": true,
+                      "key": "chillTimePassed3",
+                      "customConditional": "show = data.time4.timeRemaining",
+                      "type": "textfield",
+                      "input": true
+                    },
+                    {
+                      "label": "Phase 2 Status",
+                      "prefix": "Phase 1 Status",
+                      "hideLabel": true,
+                      "disabled": true,
+                      "tableView": true,
+                      "key": "statusPhase2",
+                      "type": "textfield",
+                      "input": true
+                    }
+                  ],
+                  "collapsed": true
+                }
+              ],
+              "collapsed": true
+            }
+          ],
+          "width": 4,
+          "offset": 0,
+          "push": 0,
+          "pull": 0,
+          "size": "md",
+          "currentWidth": 4
+        },
+        {
+          "components": [
+            {
+              "title": "Re-therm Status",
+              "collapsible": true,
+              "key": "reTherm",
+              "type": "panel",
+              "label": "Panel",
+              "collapsed": true,
+              "input": false,
+              "tableView": false,
+              "components": [
+                {
+                  "label": "Temperature",
+                  "prefix": "Temperature",
+                  "hideLabel": true,
+                  "disabled": true,
+                  "tableView": true,
+                  "calculateValue": "if(data.processSteps['Re-therm']) {\n  value = data.productTemperatureGrid[0].productTemperature\n} else {\n  value = null\n}",
+                  "key": "temperature4",
+                  "type": "textfield",
+                  "input": true
+                },
+                {
+                  "label": "Re-therm Status",
+                  "prefix": "Re-therm Status",
+                  "hideLabel": true,
+                  "disabled": true,
+                  "tableView": true,
+                  "calculateValue": "const productTemperature = data.productTemperatureGrid[0].productTemperature\n\nif(data.processSteps['Re-therm'] && typeof productTemperature === 'number' && typeof data.criticalLimit2 === 'number') {\n  if(productTemperature > data.criticalLimit2) {\n    value = 'Pass'\n  } else {\n    value = 'Fail'\n  }\n} else {\n  value = null\n}",
+                  "key": "reThermStatus1",
+                  "type": "textfield",
+                  "input": true
+                }
+              ]
+            },
+            {
+              "title": "Service Status",
+              "collapsible": true,
+              "key": "serviceStatus1",
+              "type": "panel",
+              "label": "Panel",
+              "input": false,
+              "tableView": false,
+              "components": [
+                {
+                  "label": "Temperature",
+                  "prefix": "Temperature",
+                  "hideLabel": true,
+                  "disabled": true,
+                  "tableView": true,
+                  "calculateValue": "if(data.processSteps.Service) {\n  value = data.productTemperatureGrid[0].productTemperature\n} else {\n  value = null\n}",
+                  "key": "temperature5",
+                  "type": "textfield",
+                  "input": true
+                },
+                {
+                  "label": "Service Status",
+                  "prefix": "Service Status",
+                  "hideLabel": true,
+                  "disabled": true,
+                  "tableView": true,
+                  "calculateValue": "const productTemperature = data.productTemperatureGrid[0].productTemperature\n\nif(data.processSteps.Service && typeof productTemperature === 'number' && typeof data.criticalLimit2113 === 'number') {\n  if(productTemperature > data.criticalLimit2113) {\n    value = 'Pass'\n  } else {\n    value = 'Fail'\n  }\n  \n} else {\n  value = null\n}",
+                  "key": "serviceStatus2",
+                  "type": "textfield",
+                  "input": true
+                }
+              ],
+              "collapsed": true
+            }
+          ],
+          "size": "md",
+          "width": 4,
+          "offset": 0,
+          "push": 0,
+          "pull": 0,
+          "currentWidth": 4
+        }
+      ],
+      "key": "columns2",
+      "type": "columns",
+      "input": false,
+      "tableView": false
+    },
+    {
+      "label": "Edit Grid",
+      "openWhenEmpty": true,
+      "hideLabel": true,
+      "tableView": true,
+      "addAnother": "Add Product Temperature",
+      "saveRow": "Save Temperature",
+      "rowDrafts": false,
+      "key": "productTemperatureGrid",
+      "type": "editgrid",
+      "displayAsTable": false,
+      "input": true,
+      "components": [
+        {
+          "label": "Product Temperature",
+          "mask": false,
+          "tableView": false,
+          "delimiter": false,
+          "requireDecimal": false,
+          "inputFormat": "plain",
+          "truncateMultipleSpaces": false,
+          "key": "productTemperature",
+          "type": "number",
+          "input": true
+        }
+      ]
+    },
+    {
+      "type": "button",
+      "label": "Submit",
+      "key": "submit",
+      "disableOnInvalid": true,
+      "input": true,
+      "tableView": false
+    }
+  ]
+}

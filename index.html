@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite App</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.form.io/formiojs/formio.full.min.css"
+    />
+  </head>
+  <body>
+    <div id="app">
+      <div class="container app-container">
+        <div id="form"></div>
+        <div class="time pt-4 pb-5">
+          <div class="fw-bold mb-1">Timer</div>
+          <div style="display: flex; gap: 0.5rem">
+            <div
+              style="height: 48px; font-size: 1.75rem"
+              class="bg-primary text-white rounded px-2 d-flex align-items-center"
+              id="hour"
+            >
+              00
+            </div>
+            <div
+              style="height: 48px; font-size: 1.75rem"
+              class="bg-primary text-white rounded px-2 d-flex align-items-center"
+              id="minute"
+            >
+              00
+            </div>
+            <div
+              style="height: 48px; font-size: 1.75rem"
+              class="bg-primary text-white rounded px-2 d-flex align-items-center"
+              id="second"
+            >
+              00
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script type="module" src="src/main.js"></script>
+  </body>
+</html>
