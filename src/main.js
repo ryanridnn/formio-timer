@@ -13,32 +13,29 @@ const secondEl = document.getElementById("second");
   const schema = await data.json();
 
   Formio.createForm(document.getElementById("form"), schema).then((form) => {
-    // form._data.cookEnable = true;
-    // form._data.enable6 = true;
-    // form._data.enable7 = true;
-    // form._data.enable2 = true;
-    // form._data.processSteps.Cook = true;
-    // form._data.cook = "6D Process (Listeria)";
-    // form.triggerRedraw();
-
+    console.log(form);
     const setCookStatuses = (status) => {
       form._data.cookStatus = status;
       form._data.cookStatus1 = status;
-      form.triggerRedraw();
+      form.components[4].components[0].components[0].components[2].triggerRedraw();
+      form.components[5].components[0].components[4].triggerRedraw();
     };
 
     const setChillStatuses = (status, index) => {
       form._data.chillStatus = status;
+      form.components[4].components[0].components[0].components[3].triggerRedraw();
 
       if (index === 0) {
         form._data.phase1Status = status;
         form._data.statusPhase1 = status;
+        form.components[4].components[0].components[4].components[1].components[1].triggerRedraw();
+        form.components[5].components[1].components[0].components[3].triggerRedraw();
       } else if (index === 1) {
         form._data.chillPhase2Status = status;
         form._data.statusPhase2 = status;
+        form.components[4].components[0].components[4].components[2].components[1].triggerRedraw();
+        form.components[5].components[1].components[1].components[3].triggerRedraw();
       }
-
-      form.triggerRedraw();
     };
 
     form.on("change", (e) => {
@@ -325,14 +322,6 @@ const isChillDataChange = (
   time,
   productTemperatures
 ) => {
-  console.log(
-    chillStore.phase === phase,
-    chillStore.time === time,
-    chillStore.startTemp === startTemp,
-    chillStore.finishTemp === finishTemp,
-    chillStore.productTemperatures.length === productTemperatures.length,
-    chillStore.productTemperatures.every((o, i) => productTemperatures[i] === o)
-  );
   if (
     chillStore.phase === phase &&
     chillStore.time === time &&
