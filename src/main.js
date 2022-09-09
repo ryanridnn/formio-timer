@@ -23,7 +23,7 @@ const secondEl = document.getElementById("second");
 
     const setCookStatuses = (status) => {
       form._data.cookStatus = status;
-      form._data.status = status;
+      form._data.cookStatus1 = status;
       form.triggerRedraw();
     };
 
@@ -167,36 +167,64 @@ const secondEl = document.getElementById("second");
               data.productTemperatureGrid.length === 0
                 ? false
                 : !!data.productTemperatureGrid.some(
-                    (o) => o.productTemperature >= data.upperLimit1
+                    (o) => o.productTemperature >= data.upperLimit
                   );
 
-            const time = data.timePermitted1;
+            const time1 = data.timePermitted;
+            const time2 = data.timePermitted1;
 
             if (
-              isChillDataChange(
-                data.chillSteps1,
+              isChill2DataChange(
                 data.upperLimit1,
+                data.upperLimit1,
+                data.finishTemperature,
                 data.finishTemperature1,
-                time,
+                time1,
+                time2,
                 data.productTemperatureGrid.map((o) => o.productTemperature)
               ) &&
+              typeof data.upperLimit === "number" &&
               typeof data.upperLimit1 === "number" &&
+              typeof data.finishTemperature === "number" &&
               typeof data.finishTemperature1 === "number" &&
-              time &&
+              time1 &&
+              time2 &&
               productTemperature
             ) {
+              const points = [
+                {
+                  time: time1 * 60,
+                  action: () => {
+                    if (
+                      data.productTemperatureGrid[
+                        data.productTemperatureGrid.length - 1
+                      ].productTemperature <= data.finishTemperature
+                    ) {
+                      setChillStatuses("Pass", 0);
+                    } else {
+                      setChillStatuses("Fail", 0);
+                    }
+                  },
+                },
+              ];
+
+              setChillStatuses("Progress", 0);
               setChillStatuses("Progress", 1);
-              startTimer(time * 60, () => {
-                if (
-                  data.productTemperatureGrid[
-                    data.productTemperatureGrid.length - 1
-                  ].productTemperature <= data.finishTemperature1
-                ) {
-                  setChillStatuses("Pass", 1);
-                } else {
-                  setChillStatuses("Fail", 1);
-                }
-              });
+              startTimer(
+                (time1 + time2) * 60,
+                () => {
+                  if (
+                    data.productTemperatureGrid[
+                      data.productTemperatureGrid.length - 1
+                    ].productTemperature <= data.finishTemperature1
+                  ) {
+                    setChillStatuses("Pass", 1);
+                  } else {
+                    setChillStatuses("Fail", 1);
+                  }
+                },
+                points
+              );
             }
           }
         } else {
@@ -207,7 +235,7 @@ const secondEl = document.getElementById("second");
   });
 })();
 
-const startTimer = (time, onDone) => {
+const startTimer = (time, onDone, points = []) => {
   let hours = 0;
   let minutes = 0;
   let seconds = 0;
@@ -220,7 +248,7 @@ const startTimer = (time, onDone) => {
       seconds = 0;
 
       if (minutes + 1 === 60) {
-        hour += 1;
+        hours += 1;
         minutes = 0;
       } else {
         minutes += 1;
@@ -236,6 +264,13 @@ const startTimer = (time, onDone) => {
           : "0" + Math.round(seconds)
       );
     }
+
+    points.forEach((point) => {
+      const totalSeconds = hours * 3600 + minutes * 60 + seconds;
+      if (totalSeconds >= point.time && totalSeconds <= point.time + 0.1) {
+        point.action();
+      }
+    });
 
     if (seconds + minutes * 60 + hours * 3600 >= time) {
       clearInterval(interval);
@@ -290,6 +325,14 @@ const isChillDataChange = (
   time,
   productTemperatures
 ) => {
+  console.log(
+    chillStore.phase === phase,
+    chillStore.time === time,
+    chillStore.startTemp === startTemp,
+    chillStore.finishTemp === finishTemp,
+    chillStore.productTemperatures.length === productTemperatures.length,
+    chillStore.productTemperatures.every((o, i) => productTemperatures[i] === o)
+  );
   if (
     chillStore.phase === phase &&
     chillStore.time === time &&
@@ -306,7 +349,51 @@ const isChillDataChange = (
     chillStore.time = time;
     chillStore.startTemp = startTemp;
     chillStore.finishTemp = finishTemp;
-    cookStore.productTemperatures = productTemperatures;
+    chillStore.productTemperatures = productTemperatures;
+    return true;
+  }
+};
+
+const chillStore2 = {
+  startTemp1: null,
+  startTemp2: null,
+  finishTemp1: null,
+  finishTemp2: null,
+  time1: null,
+  time2: null,
+  productTemperatures: [],
+};
+
+const isChill2DataChange = (
+  startTemp1,
+  startTemp2,
+  finishTemp1,
+  finishTemp2,
+  time1,
+  time2,
+  productTemperatures
+) => {
+  if (
+    chillStore2.time1 === time1 &&
+    chillStore2.time2 === time2 &&
+    chillStore2.startTemp1 === startTemp1 &&
+    chillStore2.startTemp2 === startTemp2 &&
+    chillStore2.finishTemp1 === finishTemp1 &&
+    chillStore2.finishTemp2 === finishTemp2 &&
+    chillStore.productTemperatures.length === productTemperatures.length &&
+    chillStore.productTemperatures.every((o, i) => productTemperatures[i] === o)
+  ) {
+    return false;
+  } else if (productTemperatures.length === 0) {
+    return false;
+  } else {
+    chillStore.time1 = time1;
+    chillStore.time2 = time2;
+    chillStore.startTemp1 = startTemp1;
+    chillStore.startTemp2 = startTemp2;
+    chillStore.finishTemp1 = finishTemp1;
+    chillStore.finishTemp2 = finishTemp2;
+    chillStore.productTemperatures = productTemperatures;
     return true;
   }
 };
