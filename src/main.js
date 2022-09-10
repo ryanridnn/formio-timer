@@ -13,7 +13,6 @@ const secondEl = document.getElementById("second");
   const schema = await data.json();
 
   Formio.createForm(document.getElementById("form"), schema).then((form) => {
-    console.log(form);
     const setCookStatuses = (status) => {
       form._data.cookStatus = status;
       form._data.cookStatus1 = status;
@@ -36,6 +35,170 @@ const secondEl = document.getElementById("second");
         form.components[4].components[0].components[4].components[2].components[1].triggerRedraw();
         form.components[5].components[1].components[1].components[3].triggerRedraw();
       }
+    };
+
+    const setCookTime = (hour, minute, second, time) => {
+      if (form._data.time1 && form._data.time1.timePassed) {
+        form._data.cookTimePassed = `${hour >= 10 ? hour : "0" + hour}:${
+          minute >= 10 ? minute : "0" + minute
+        }:${second >= 10 ? second : "0" + second}`;
+        form.components[5].components[0].components[2].triggerRedraw();
+      }
+
+      if (form._data.time1 && form._data.time1.timeRemaining) {
+        let remainingSecond = time - (hour * 3600 + minute * 60 + second);
+        const remainingHour = Math.floor(remainingSecond / 3600);
+        remainingSecond -= remainingHour;
+        const remainingMinute = Math.floor(remainingSecond / 60);
+        remainingSecond -= remainingMinute;
+        form._data.cookTimePassed1 = `${
+          remainingHour >= 10 ? remainingHour : "0" + remainingHour
+        }:${remainingMinute >= 10 ? remainingMinute : "0" + remainingMinute}:${
+          remainingSecond >= 10 ? remainingSecond : "0" + remainingSecond
+        }`;
+        form.components[5].components[0].components[3].triggerRedraw();
+      }
+    };
+
+    const setOnePhaseChillTime = (hour, minute, second, time) => {
+      if (hour * 3600 + minute * 60 + second <= time) {
+        if (form._data.time3.timePassed) {
+          form._data.chillTimePassed = `${hour >= 10 ? hour : "0" + hour}:${
+            minute >= 10 ? minute : "0" + minute
+          }:${second >= 10 ? second : "0" + second}`;
+          form.components[5].components[1].components[0].components[1].triggerRedraw();
+        }
+
+        if (form._data.time3.timeRemaining) {
+          let remainingSecond = time - (hour * 3600 + minute * 60 + second);
+          const remainingHour = Math.floor(remainingSecond / 3600);
+          remainingSecond -= remainingHour;
+          const remainingMinute = Math.floor(remainingSecond / 60);
+          remainingSecond -= remainingMinute;
+          form._data.chillTimePassed1 = `${
+            remainingHour >= 10 ? remainingHour : "0" + remainingHour
+          }:${
+            remainingMinute >= 10 ? remainingMinute : "0" + remainingMinute
+          }:${remainingSecond >= 10 ? remainingSecond : "0" + remainingSecond}`;
+          form.components[5].components[1].components[0].components[2].triggerRedraw();
+        }
+      }
+    };
+
+    const setTwoPhaseChillTime = (hour, minute, second, times) => {
+      if (hour * 3600 + minute * 60 + second <= times[0]) {
+        if (form._data.time3.timePassed) {
+          form._data.chillTimePassed = `${hour >= 10 ? hour : "0" + hour}:${
+            minute >= 10 ? minute : "0" + minute
+          }:${second >= 10 ? second : "0" + second}`;
+          form.components[5].components[1].components[0].components[1].triggerRedraw();
+        }
+
+        if (form._data.time3.timeRemaining) {
+          let remainingSecond = times[0] - (hour * 3600 + minute * 60 + second);
+          const remainingHour = Math.floor(remainingSecond / 3600);
+          remainingSecond -= remainingHour;
+          const remainingMinute = Math.floor(remainingSecond / 60);
+          remainingSecond -= remainingMinute;
+          form._data.chillTimePassed1 = `${
+            remainingHour >= 10 ? remainingHour : "0" + remainingHour
+          }:${
+            remainingMinute >= 10 ? remainingMinute : "0" + remainingMinute
+          }:${remainingSecond >= 10 ? remainingSecond : "0" + remainingSecond}`;
+          form.components[5].components[1].components[0].components[2].triggerRedraw();
+        }
+      } else if (hour * 3600 + minute * 60 + second > times[0]) {
+        if (form._data.time4.timePassed) {
+          let passedSecond = hour * 3600 + minute * 60 + second - times[0];
+          const passedHour = Math.floor(passedSecond / 3600);
+          passedSecond -= passedHour;
+          const passedMinute = Math.floor(passedSecond / 60);
+          passedSecond -= passedMinute;
+          form._data.chillTimePassed2 = `${
+            passedHour >= 10 ? passedHour : "0" + passedHour
+          }:${passedMinute >= 10 ? passedMinute : "0" + passedMinute}:${
+            passedSecond >= 10 ? passedSecond : "0" + passedSecond
+          }`;
+          form.components[5].components[1].components[1].components[1].triggerRedraw();
+        }
+
+        if (form._data.time4.timeRemaining) {
+          let remainingSecond =
+            times[1] - (hour * 3600 + minute * 60 + second - times[0]);
+          const remainingHour = Math.floor(remainingSecond / 3600);
+          remainingSecond -= remainingHour;
+          const remainingMinute = Math.floor(remainingSecond / 60);
+          remainingSecond -= remainingMinute;
+          form._data.chillTimePassed3 = `${
+            remainingHour >= 10 ? remainingHour : "0" + remainingHour
+          }:${
+            remainingMinute >= 10 ? remainingMinute : "0" + remainingMinute
+          }:${remainingSecond >= 10 ? remainingSecond : "0" + remainingSecond}`;
+          form.components[5].components[1].components[1].components[2].triggerRedraw();
+        }
+      }
+    };
+
+    const startTimer = (time, onDone, points = []) => {
+      let hours = 0;
+      let minutes = 0;
+      let seconds = 0;
+
+      const chillSteps = form._data.chillSteps1;
+      const phase1ChillTime = form._data.timePermitted * 60;
+      const phase2ChillTime = form._data.timePermitted1 * 60;
+
+      setTimerElement("00", "00", "00");
+      timerOn = true;
+      const interval = setInterval(() => {
+        seconds += 0.1;
+        if (Math.round(seconds) === 60) {
+          seconds = 0;
+
+          if (minutes + 1 === 60) {
+            hours += 1;
+            minutes = 0;
+          } else {
+            minutes += 1;
+          }
+        }
+
+        if (Number(seconds.toFixed(1)) % 1 === 0) {
+          setTimerElement(
+            hours >= 10 ? hours : "0" + hours,
+            minutes >= 10 ? minutes : "0" + minutes,
+            Math.round(seconds) > 9
+              ? Math.round(seconds)
+              : "0" + Math.round(seconds)
+          );
+
+          if (form._data.processSteps.Cook) {
+            setCookTime(hours, minutes, Math.round(seconds), time);
+          } else if (form._data.processSteps.Chill) {
+            if (chillSteps === "onePhaseChill") {
+              setOnePhaseChillTime(hours, minutes, Math.round(seconds), time);
+            } else if (chillSteps === "twoPhaseChill") {
+              setTwoPhaseChillTime(hours, minutes, Math.round(seconds), [
+                phase1ChillTime,
+                phase2ChillTime,
+              ]);
+            }
+          }
+        }
+
+        points.forEach((point) => {
+          const totalSeconds = hours * 3600 + minutes * 60 + seconds;
+          if (totalSeconds >= point.time && totalSeconds <= point.time + 0.1) {
+            point.action();
+          }
+        });
+
+        if (seconds + minutes * 60 + hours * 3600 >= time) {
+          clearInterval(interval);
+          timerOn = false;
+          onDone();
+        }
+      }, 100);
     };
 
     form.on("change", (e) => {
@@ -127,7 +290,7 @@ const secondEl = document.getElementById("second");
               data.productTemperatureGrid.length === 0
                 ? false
                 : !!data.productTemperatureGrid.some(
-                    (o) => o.productTemperature >= data.upperLimit
+                    (o) => o.productTemperature <= data.upperLimit
                   );
 
             const time = data.timePermitted;
@@ -164,7 +327,7 @@ const secondEl = document.getElementById("second");
               data.productTemperatureGrid.length === 0
                 ? false
                 : !!data.productTemperatureGrid.some(
-                    (o) => o.productTemperature >= data.upperLimit
+                    (o) => o.productTemperature <= data.upperLimit
                   );
 
             const time1 = data.timePermitted;
@@ -231,51 +394,6 @@ const secondEl = document.getElementById("second");
     });
   });
 })();
-
-const startTimer = (time, onDone, points = []) => {
-  let hours = 0;
-  let minutes = 0;
-  let seconds = 0;
-
-  setTimerElement("00", "00", "00");
-  timerOn = true;
-  const interval = setInterval(() => {
-    seconds += 0.1;
-    if (Math.round(seconds) === 60) {
-      seconds = 0;
-
-      if (minutes + 1 === 60) {
-        hours += 1;
-        minutes = 0;
-      } else {
-        minutes += 1;
-      }
-    }
-
-    if (Number(seconds.toFixed(1)) % 1 === 0) {
-      setTimerElement(
-        hours >= 10 ? hours : "0" + hours,
-        minutes >= 10 ? minutes : "0" + minutes,
-        Math.round(seconds) > 9
-          ? Math.round(seconds)
-          : "0" + Math.round(seconds)
-      );
-    }
-
-    points.forEach((point) => {
-      const totalSeconds = hours * 3600 + minutes * 60 + seconds;
-      if (totalSeconds >= point.time && totalSeconds <= point.time + 0.1) {
-        point.action();
-      }
-    });
-
-    if (seconds + minutes * 60 + hours * 3600 >= time) {
-      clearInterval(interval);
-      timerOn = false;
-      onDone();
-    }
-  }, 100);
-};
 
 const setTimerElement = (hour, minute, second) => {
   hourEl.innerText = hour;
